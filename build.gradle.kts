@@ -15,7 +15,6 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     /// Own dependencies:
-
     // https://mvnrepository.com/artifact/io.github.microutils/kotlin-logging
     implementation("io.github.microutils:kotlin-logging:2.1.21")
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple

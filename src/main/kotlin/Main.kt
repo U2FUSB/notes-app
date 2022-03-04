@@ -1,4 +1,7 @@
+import mu.KotlinLogging
 import utils.*
+
+private val logger = KotlinLogging.logger{}
 
 fun showMenu() : Int {
     return ScannerInput.readNextInt ("""
@@ -31,24 +34,24 @@ fun runMenu() {
 }
 
 fun exitProgram() {
-    println("bye, see you :)")
+    logger.info { "bye, see you :)" }
     kotlin.system.exitProcess(0)
 }
 
 fun deleteNote() {
-    //TODO("Not yet implemented")
+    logger.info { "deleteNote() function invoked" }
 }
 
 fun updateNote() {
-    //TODO("Not yet implemented")
+    logger.info { "updateNote() function invoked" }
 }
 
 fun readNote() {
-    //TODO("Not yet implemented")
+    logger.info { "readNote() function invoked" }
 }
 
 fun addNote() {
-    //TODO("Not yet implemented")
+    logger.info { "addNote() function invoked" }
 }
 
 fun main() {
