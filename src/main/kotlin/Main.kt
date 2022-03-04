@@ -1,8 +1,7 @@
-// Qestion agile
-val scanner = java.util.Scanner(System.`in`)
+import utils.*
 
 fun showMenu() : Int {
-    print("""
+    return ScannerInput.readNextInt ("""
         > ---------------------------
         > |  NOTE KEEPER APP        |
         > ---------------------------
@@ -16,7 +15,6 @@ fun showMenu() : Int {
         > ---------------------------
         > ==>> 
     """.trimMargin(">"))
-    return scanner.nextInt()
 }
 
 fun runMenu() {
