@@ -1,21 +1,19 @@
-
-
 // Qestion agile
 val scanner = java.util.Scanner(System.`in`)
 
 fun showMenu() : Int {
     print("""
-        > -------------------
-        > NOTE KEEPER APP
-        > -------------------
-        > NOTE MENU
-        >    1) Add a note
-        >    2) List all notes
-        >    3) Update a note
-        >    4) Delete a note
-        > -------------------
-        >    0) Exit
-        > -------------------
+        > ---------------------------
+        > |  NOTE KEEPER APP        |
+        > ---------------------------
+        > | NOTE MENU               |
+        > |   1) Add a note         |
+        > |   2) List all notes     |
+        > |   3) Update a note      |
+        > |   4) Delete a note      |
+        > ---------------------------
+        > |   0) Exit               |
+        > ---------------------------
         > ==>> 
     """.trimMargin(">"))
     return scanner.nextInt()
