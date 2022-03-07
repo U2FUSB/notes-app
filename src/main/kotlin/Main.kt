@@ -32,9 +32,19 @@ fun runMenu() {
             3 -> updateNote()
             4 -> deleteNote()
             0 -> exitProgram()
+            -99 -> addSomeNotes()
             else -> println("Option $menu is invalid. Try another one")
         }
     } while (true)
+}
+
+fun addSomeNotes() {
+    noteAPI.add(Note("Archived1", 2, "cat", true))
+    noteAPI.add(Note("Archived2", 1, "noCat", true))
+    noteAPI.add(Note("Archived3", 4, "cat", true))
+    noteAPI.add(Note("Active1", 4, "cat", false))
+    noteAPI.add(Note("Active2", 1, "cat", false))
+    noteAPI.add(Note("Active3", 2, "noCat", false))
 }
 
 fun exitProgram() {
@@ -51,7 +61,13 @@ fun updateNote() {
 }
 
 fun readNote() {
-    println(NoteAPI().listAllNotes())
+    println(noteAPI.listAllNotes())
+    println("\nActive Notes are:")
+    println(noteAPI.listActiveNotes())
+    println("in sum: ${noteAPI.numberOfActiveNotes()}\n")
+    println("\nArchived Notes are:")
+    println(noteAPI.listArchivedNotes())
+    println("in sum: ${noteAPI.numberOfArchivedNotes()}\n")
 }
 
 fun addNote() {
