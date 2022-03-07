@@ -6,9 +6,11 @@ This notes app allows you to create, read, delete and manipulate notes to a list
 - console UI
 - logging support (see external code)
 - interaction through console (CMD, bash, IntelliJ IDEA console, etc.)
+- Implementation of creating and listing notes
+- Listing notes by priority (NOT ACCESSABLE BY UI!) and archived status 
 ## STILL MISSING FEATURES
-- Implementation of CRUD
-- Implementation of logic to manipulate notes
+- Implementation of CRUD (just UD)
+- UI access for priority listing
 ## REQUIREMENTS
 - kotlin support
 - console to interact
