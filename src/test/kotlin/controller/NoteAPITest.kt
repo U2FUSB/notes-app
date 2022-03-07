@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 
 class NoteAPITest {
 
@@ -15,8 +16,11 @@ class NoteAPITest {
     private var codeApp: Note? = null
     private var testApp: Note? = null
     private var swim: Note? = null
+    private var iAmArchived: Note? = null
+    private var iAmTooArchived: Note? = null
     private var populatedNotes: NoteAPI? = NoteAPI()
     private var emptyNotes: NoteAPI? = NoteAPI()
+    private var archivedNotes: NoteAPI? = NoteAPI()
 
     @BeforeEach
     fun setup(){
@@ -25,6 +29,8 @@ class NoteAPITest {
         codeApp = Note("Code App", 4, "Work", false)
         testApp = Note("Test App", 4, "Work", false)
         swim = Note("Swim - Pool", 3, "Hobby", false)
+        iAmArchived = Note("archvedNote", 2, "some", true)
+        iAmTooArchived = Note("alsoArchived", 1, "some", true)
 
         //adding 5 Note to the notes api
         populatedNotes!!.add(learnKotlin!!)
@@ -32,6 +38,10 @@ class NoteAPITest {
         populatedNotes!!.add(codeApp!!)
         populatedNotes!!.add(testApp!!)
         populatedNotes!!.add(swim!!)
+
+        //adding 2 Note to the notes api (for archived)
+        archivedNotes!!.add(iAmArchived!!)
+        archivedNotes!!.add(iAmTooArchived!!)
     }
 
     @AfterEach
@@ -41,8 +51,12 @@ class NoteAPITest {
         codeApp = null
         testApp = null
         swim = null
+        iAmArchived = null
+        iAmTooArchived = null
+
         populatedNotes = null
         emptyNotes = null
+        archivedNotes = null
     }
 
     @Nested
@@ -83,6 +97,39 @@ class NoteAPITest {
             assertTrue(notesString.contains("test app"))
             assertTrue(notesString.contains("swim"))
             assertTrue(notesString.contains("summer holiday"))
+        }
+    }
+
+    @Nested
+    inner class ListArchivedNotes {
+        @Test
+        fun `listArchivedNotes returns just archived notes` () {
+           /* assertTrue(iAmArchived!!.isNoteArchived)
+            assertTrue(iAmTooArchived!!.isNoteArchived)
+            assertFalse(learnKotlin!!.isNoteArchived)
+            assertFalse(swim!!.isNoteArchived)*/
+            assertTrue(archivedNotes!!.numberOfArchivedNotes() == 2)
+        }
+        @Test
+        fun `listArchivedNotes returns no archived notes, when there are none` () {
+            /*assertFalse(iAmArchived!!.isNoteArchived)
+            assertFalse(iAmTooArchived!!.isNoteArchived)
+            assertTrue(learnKotlin!!.isNoteArchived)
+            assertTrue(swim!!.isNoteArchived)*/
+            assertTrue(populatedNotes!!.numberOfArchivedNotes() == 0)
+        }
+    }
+
+    @Nested
+    inner class  ListActiveNotes {
+        @Test
+        fun `listActiveNotes returns just active notes` () {
+            assertTrue(populatedNotes!!.numberOfActiveNotes() == 5)
+            assertFalse(archivedNotes!!.numberOfArchivedNotes() == 0)
+        }
+        @Test
+        fun `listActiveNotes returns no active notes, when there are none` () {
+            assertFalse(populatedNotes!!.numberOfActiveNotes() == 0)
         }
     }
 }

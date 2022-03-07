@@ -30,4 +30,21 @@ class NoteAPI {
     private fun isValidListIndex(index: Int, list: List<Any>):Boolean {
         return (index >= 0 && index < list.size)
     }
+    fun listActiveNotes(): String {
+        return notes.filter { !it.isNoteArchived }.toString()
+    }
+
+    fun listArchivedNotes(): String {
+        return notes.filter{ it.isNoteArchived }.toString()
+    }
+
+    fun numberOfArchivedNotes(): Int {
+        return notes.count { it.isNoteArchived }
+        //TODO test
+    }
+
+    fun numberOfActiveNotes(): Int {
+        return notes.count{ !it.isNoteArchived }
+        //TODO test
+    }
 }
