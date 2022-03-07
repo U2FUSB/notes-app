@@ -1,10 +1,14 @@
+import controller.NoteAPI
+import models.Note
 import mu.KotlinLogging
-import utils.*
+import utils.ScannerInput.readNextInt
+import utils.ScannerInput.readNextLine
 
 private val logger = KotlinLogging.logger{}
+private val noteAPI = NoteAPI()
 
 fun showMenu() : Int {
-    return ScannerInput.readNextInt ("""
+    return readNextInt ("""
         > ---------------------------
         > |  NOTE KEEPER APP        |
         > ---------------------------
@@ -47,11 +51,26 @@ fun updateNote() {
 }
 
 fun readNote() {
-    logger.info { "readNote() function invoked" }
+    println(NoteAPI().listAllNotes())
 }
 
 fun addNote() {
-    logger.info { "addNote() function invoked" }
+    //logger.info { "addNote() function invoked" }
+    val title = readNextLine("Title of Note: ")
+    val prio = readNextInt("Priority of Note (1-5): ")
+    val category = readNextLine("Category of Note: ")
+    val report = noteAPI.add(Note(title, prio, category))
+    println ("""
+        |
+        |_______________________________________
+        |Note with
+        |   TITLE:      $title
+        |   PRIORITY:   $prio
+        |   CATEGORY:   $category
+        |could ${if (report) "be added successfully" else "not be added. Error!"}
+        |_______________________________________
+        |
+    """.trimMargin())
 }
 
 fun main() {
