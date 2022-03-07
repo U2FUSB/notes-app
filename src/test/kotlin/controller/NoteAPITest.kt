@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 
 class NoteAPITest {
 
@@ -130,6 +131,22 @@ class NoteAPITest {
         @Test
         fun `listActiveNotes returns no active notes, when there are none` () {
             assertFalse(populatedNotes!!.numberOfActiveNotes() == 0)
+        }
+    }
+    @Nested
+    inner class ListPrioritys {
+        @Test
+        fun `listNotesBySelectedPriority returns just notes of priority 1` () {
+            assertFalse(populatedNotes!!.listNotesBySelectedPriority(1).contains(swim.toString()))
+            assertTrue(populatedNotes!!.listNotesBySelectedPriority(1).contains(summerHoliday.toString()))
+        }
+    }
+    @Nested
+    inner class CountPrioritys {
+        @Test
+        fun `numberOfNotesByPriority returns just fitting sums of elements` () {
+            assertEquals(2, populatedNotes!!.numberOfNotesByPriority(4))
+            assertNotEquals(0, populatedNotes!!.numberOfNotesByPriority(1))
         }
     }
 }

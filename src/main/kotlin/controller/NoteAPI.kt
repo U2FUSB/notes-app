@@ -40,11 +40,17 @@ class NoteAPI {
 
     fun numberOfArchivedNotes(): Int {
         return notes.count { it.isNoteArchived }
-        //TODO test
     }
 
     fun numberOfActiveNotes(): Int {
         return notes.count{ !it.isNoteArchived }
-        //TODO test
+    }
+
+    fun listNotesBySelectedPriority(priority: Int): String {
+        return notes.filter { it.notePriority == priority }.toString()
+    }
+
+    fun numberOfNotesByPriority(priority: Int): Int {
+        return notes.count{it.notePriority == priority}
     }
 }
