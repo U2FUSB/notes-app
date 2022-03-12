@@ -23,7 +23,6 @@ fun showMenu() : Int {
         > ==>> 
     """.trimMargin(">"))
 }
-
 fun runMenu() {
     do {
         when (val menu = showMenu()) {
@@ -46,20 +45,28 @@ fun addSomeNotes() {
     noteAPI.add(Note("Active2", 1, "cat", false))
     noteAPI.add(Note("Active3", 2, "noCat", false))
 }
-
 fun exitProgram() {
     logger.info { "bye, see you :)" }
     kotlin.system.exitProcess(0)
 }
-
 fun deleteNote() {
-    logger.info { "deleteNote() function invoked" }
+    //logger.info { "deleteNote() function invoked" }
+    readNote()
+    if (noteAPI.numberOfNotes() > 0) {
+        //only ask the user to choose the note to delete if notes exist
+        val indexToDelete = readNextInt("Enter the index of the note to delete: ")
+        //pass the index of the note to NoteAPI for deleting and check for success.
+        val noteToDelete = noteAPI.deleteNote(indexToDelete)
+        if (noteToDelete != null) {
+            println("Delete Successful! Deleted note: ${noteToDelete.noteTitle}")
+        } else {
+            println("Delete NOT Successful")
+        }
+    }
 }
-
 fun updateNote() {
     logger.info { "updateNote() function invoked" }
 }
-
 fun readNote() {
     println(noteAPI.listAllNotes())
     println("\nActive Notes are:")
@@ -69,7 +76,6 @@ fun readNote() {
     println(noteAPI.listArchivedNotes())
     println("in sum: ${noteAPI.numberOfArchivedNotes()}\n")
 }
-
 fun addNote() {
     //logger.info { "addNote() function invoked" }
     val title = readNextLine("Title of Note: ")
