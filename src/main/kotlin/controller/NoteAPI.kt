@@ -1,8 +1,11 @@
 package controller
 
 import models.Note
+import persistence.Serializer
+import kotlin.jvm.Throws
 
-class NoteAPI {
+class NoteAPI(serializerType: Serializer){
+    private var serializer: Serializer = serializerType
     private var notes = ArrayList<Note>()
 
     fun add(note: Note): Boolean {
@@ -90,5 +93,12 @@ class NoteAPI {
     private fun isValidListIndex(index: Int, list: List<Any>):Boolean {
         return (index >= 0 && index < list.size)
     }
-
+    @Throws(Exception::class)
+    fun load() {
+        notes = serializer.read() as ArrayList<Note> /* = java.util.ArrayList<models.Note> */
+    }
+    @Throws(Exception::class)
+    fun store() {
+        serializer.write(notes)
+    }
 }

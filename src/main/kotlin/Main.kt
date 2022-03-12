@@ -1,11 +1,13 @@
 import controller.NoteAPI
 import models.Note
 import mu.KotlinLogging
+import persistence.XMLSerializer
 import utils.ScannerInput.readNextInt
 import utils.ScannerInput.readNextLine
+import java.io.File
 
 private val logger = KotlinLogging.logger{}
-private val noteAPI = NoteAPI()
+private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
 
 fun showMenu() : Int {
     return readNextInt ("""
@@ -17,6 +19,8 @@ fun showMenu() : Int {
         > |   2) List all notes     |
         > |   3) Update a note      |
         > |   4) Delete a note      |
+        > |   20) Save notes        |
+        > |   21) Load notes        |
         > ---------------------------
         > |   0) Exit               |
         > ---------------------------
@@ -28,6 +32,8 @@ fun runMenu() {
         when (val menu = showMenu()) {
             1 -> addNote()
             2 -> readNote()
+            20 -> saveNote()
+            21 -> loadNote()
             3 -> updateNote()
             4 -> deleteNote()
             0 -> exitProgram()
@@ -113,7 +119,20 @@ fun addNote() {
         |
     """.trimMargin())
 }
-
+fun saveNote() {
+    try {
+        noteAPI.store()
+    } catch (e:Exception) {
+        System.err.println("Error writing to file: $e")
+    }
+}
+fun loadNote() {
+    try {
+        noteAPI.load()
+    } catch (e: Exception) {
+        System.err.println("Error reading to file: $e")
+    }
+}
 fun main() {
     runMenu()
 }
