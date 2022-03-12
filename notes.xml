@@ -1,39 +1,21 @@
 <object-stream>
   <list>
     <models.Note>
-      <noteTitle>Archived1</noteTitle>
-      <notePriority>2</notePriority>
-      <noteCategory>cat</noteCategory>
-      <isNoteArchived>true</isNoteArchived>
-    </models.Note>
-    <models.Note>
-      <noteTitle>Archived2</noteTitle>
-      <notePriority>1</notePriority>
-      <noteCategory>noCat</noteCategory>
-      <isNoteArchived>true</isNoteArchived>
-    </models.Note>
-    <models.Note>
-      <noteTitle>Archived3</noteTitle>
+      <noteTitle>Test App</noteTitle>
       <notePriority>4</notePriority>
-      <noteCategory>cat</noteCategory>
-      <isNoteArchived>true</isNoteArchived>
-    </models.Note>
-    <models.Note>
-      <noteTitle>Active1</noteTitle>
-      <notePriority>4</notePriority>
-      <noteCategory>cat</noteCategory>
+      <noteCategory>Work</noteCategory>
       <isNoteArchived>false</isNoteArchived>
     </models.Note>
     <models.Note>
-      <noteTitle>Active2</noteTitle>
-      <notePriority>1</notePriority>
-      <noteCategory>cat</noteCategory>
-      <isNoteArchived>false</isNoteArchived>
+      <noteTitle>Swim - Pool</noteTitle>
+      <notePriority>3</notePriority>
+      <noteCategory>Hobby</noteCategory>
+      <isNoteArchived>true</isNoteArchived>
     </models.Note>
     <models.Note>
-      <noteTitle>Active3</noteTitle>
-      <notePriority>2</notePriority>
-      <noteCategory>noCat</noteCategory>
+      <noteTitle>Summer Holiday to France</noteTitle>
+      <notePriority>1</notePriority>
+      <noteCategory>Holiday</noteCategory>
       <isNoteArchived>false</isNoteArchived>
     </models.Note>
   </list>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="controller.NoteAPITest$ListNotes" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-03-12T22:16:39" hostname="NIKLASFH" time="0.019">
+<testsuite name="controller.NoteAPITest$ListNotes" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-03-12T22:26:25" hostname="NIKLASFH" time="0.023">
   <properties/>
-  <testcase name="listAllNotes returns No Notes Stored message when ArrayList is empty()" classname="controller.NoteAPITest$ListNotes" time="0.016"/>
-  <testcase name="listAllNotes returns Notes when ArrayList has notes stored()" classname="controller.NoteAPITest$ListNotes" time="0.002"/>
+  <testcase name="listAllNotes returns No Notes Stored message when ArrayList is empty()" classname="controller.NoteAPITest$ListNotes" time="0.018"/>
+  <testcase name="listAllNotes returns Notes when ArrayList has notes stored()" classname="controller.NoteAPITest$ListNotes" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
