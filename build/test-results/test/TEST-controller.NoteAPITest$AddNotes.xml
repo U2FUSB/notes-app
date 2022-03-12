@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="controller.NoteAPITest$AddNotes" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-03-12T22:26:25" hostname="NIKLASFH" time="0.062">
-  <properties/>
-  <testcase name="adding a Note to a populated list adds to ArrayList()" classname="controller.NoteAPITest$AddNotes" time="0.057"/>
-  <testcase name="adding a Note to an empty list adds to ArrayList()" classname="controller.NoteAPITest$AddNotes" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
