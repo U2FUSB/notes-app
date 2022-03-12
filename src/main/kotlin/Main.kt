@@ -7,7 +7,8 @@ import utils.ScannerInput.readNextLine
 import java.io.File
 
 private val logger = KotlinLogging.logger{}
-private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
+//private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
+private val noteAPI = NoteAPI(XMLSerializer(File("notes.json")))
 
 fun showMenu() : Int {
     return readNextInt ("""
