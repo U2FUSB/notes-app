@@ -31,25 +31,39 @@ class NoteAPI {
         return (index >= 0 && index < list.size)
     }
     fun listActiveNotes(): String {
-        return notes.filter { !it.isNoteArchived }.toString()
+        return if (numberOfActiveNotes() == 0) {
+            "No active notes stored"
+        } else {
+            notes.filter { !it.isNoteArchived}.joinToString { "${notes.indexOf(it)}: $it" }
+        }
     }
-
     fun listArchivedNotes(): String {
-        return notes.filter{ it.isNoteArchived }.toString()
+        return if (numberOfArchivedNotes() == 0) {
+            "No archived notes stored"
+        } else {
+            notes.filter{ it.isNoteArchived }.joinToString { "${notes.indexOf(it)}: $it" }
+        }
     }
-
     fun numberOfArchivedNotes(): Int {
         return notes.count { it.isNoteArchived }
     }
-
     fun numberOfActiveNotes(): Int {
         return notes.count{ !it.isNoteArchived }
     }
-
     fun listNotesBySelectedPriority(priority: Int): String {
-        return notes.filter { it.notePriority == priority }.toString()
+        return if (notes.isEmpty()) {
+            "No notes stored"
+        } else {
+            if (numberOfNotesByPriority(priority) == 0) {
+                "no notes with priority: $priority"
+            } else {
+                notes.filter { it.notePriority == priority }.joinToString { "${notes.indexOf(it)}: $it" }
+            }
+            // obsolete:
+            /*val notesByPrio =
+            notesByPrio.ifEmpty { */
+        }
     }
-
     fun numberOfNotesByPriority(priority: Int): Int {
         return notes.count{it.notePriority == priority}
     }
