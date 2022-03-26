@@ -9,7 +9,7 @@ import java.io.File
 private val logger = KotlinLogging.logger{}
 //private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
 private val noteAPI = NoteAPI(XMLSerializer(File("notes.json")))
-
+//test of writing something
 fun showMenu() : Int {
     return readNextInt ("""
         > ---------------------------
