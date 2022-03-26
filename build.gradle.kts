@@ -23,6 +23,9 @@ dependencies {
     implementation("com.thoughtworks.xstream:xstream:1.4.18")
     // https://mvnrepository.com/artifact/org.codehaus.jettison/jettison
     implementation("org.codehaus.jettison:jettison:1.4.1")
+
+
+
 }
 
 tasks.test {
