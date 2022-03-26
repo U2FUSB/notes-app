@@ -100,7 +100,7 @@ fun readNote() {
     //println("in sum: ${noteAPI.numberOfActiveNotes()}\n")
     //println("\nArchived Notes are:")
     //println(noteAPI.listArchivedNotes())
-    //printl("in sum: ${noteAPI.numberOfArchivedNotes()}\n")
+    //println("in sum: ${noteAPI.numberOfArchivedNotes()}\n")
 }
 fun addNote() {
     //logger.info { "addNote() function invoked" }
