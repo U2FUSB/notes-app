@@ -46,7 +46,6 @@ fun runMenu() {
         }
     } while (true)
 }
-
 fun archiveNote() {
     readActiveNotes()
     if (noteAPI.numberOfActiveNotes() > 0) {
@@ -58,11 +57,9 @@ fun archiveNote() {
         }
     }
 }
-
 fun readActiveNotes() {
     println(noteAPI.listActiveNotes())
 }
-
 fun addSomeNotes() {
     noteAPI.add(Note("Archived1", 2, "cat", true))
     noteAPI.add(Note("Archived2", 1, "noCat", true))
@@ -134,15 +131,12 @@ fun readNotes() {
     }
 
 }
-
 fun readArchivedNotes() {
     println(noteAPI.listArchivedNotes())
 }
-
 fun readAllNotes() {
     println(noteAPI.listAllNotes())
 }
-
 fun addNote() {
     //logger.info { "addNote() function invoked" }
     val title = readNextLine("Title of Note: ")
