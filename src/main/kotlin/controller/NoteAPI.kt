@@ -125,4 +125,9 @@ class NoteAPI(serializerType: Serializer){
             false
         }
     }
+
+    fun searchByTitle(noteTitle: String) : String {
+        return notes.filter { it.noteTitle.lowercase().contains(noteTitle.lowercase()) }
+            .joinToString {"\n${notes.indexOf(it)} : $it" }
+    }
 }
