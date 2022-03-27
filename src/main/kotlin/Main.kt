@@ -51,8 +51,8 @@ fun runMenu() {
 
 fun searchNote() {
     if (noteAPI.numberOfNotes() > 0) {
-        val notesByTitle : String? = noteAPI.searchByTitle(readNextLine("Enter a title for the note: "))
-        if (notesByTitle?.isEmpty() == true) {
+        val notesByTitle : String = noteAPI.searchByTitle(readNextLine("Enter a title for the note: "))
+        if (notesByTitle.isEmpty()) {
             println("No notes found")
         } else {
             println(notesByTitle)
