@@ -20,14 +20,17 @@ class NoteAPI(serializerType: Serializer){
         return if (notes.isEmpty()) {
             "No notes stored"
         } else {
-            var listOfNotes = ""
+            notes.joinToString{ "\n${notes.indexOf(it)} : $it" }
+
+            /*var listOfNotes = ""
             for (i in notes.indices) {
                 listOfNotes += "${i}: ${notes[i]} \n"
             }
-            listOfNotes
+            listOfNotes*/
         }
     }
     fun listActiveNotes(): String {
+
         return if (numberOfActiveNotes() == 0) {
             "No active notes stored"
         } else {
@@ -100,7 +103,7 @@ class NoteAPI(serializerType: Serializer){
     //return notes.count{it.notePriority == priority}
     }
     fun isValidIndex(index: Int) :Boolean{
-        return isValidListIndex(index, notes);
+        return isValidListIndex(index, notes)
     }
     private fun isValidListIndex(index: Int, list: List<Any>):Boolean {
         return (index >= 0 && index < list.size)
