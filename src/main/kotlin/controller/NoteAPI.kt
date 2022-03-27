@@ -34,14 +34,14 @@ class NoteAPI(serializerType: Serializer){
         return if (numberOfActiveNotes() == 0) {
             "No active notes stored"
         } else {
-            notes.filter { !it.isNoteArchived}.joinToString { "${notes.indexOf(it)}: $it" }
+            notes.filter { !it.isNoteArchived}.joinToString { "\n${notes.indexOf(it)} : $it" }
         }
     }
     fun listArchivedNotes(): String {
         return if (numberOfArchivedNotes() == 0) {
             "No archived notes stored"
         } else {
-            notes.filter{ it.isNoteArchived }.joinToString { "${notes.indexOf(it)}: $it" }
+            notes.filter { it.isNoteArchived }.joinToString { "\n${notes.indexOf(it)} : $it" }
         }
     }
     fun listNotesBySelectedPriority(priority: Int): String {
