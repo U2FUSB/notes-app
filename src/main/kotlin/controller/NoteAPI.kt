@@ -79,13 +79,25 @@ class NoteAPI(serializerType: Serializer){
         return notes.size
     }
     fun numberOfArchivedNotes(): Int {
-        return notes.count { it.isNoteArchived }
+        return notes.stream()
+            .filter{it.isNoteArchived}
+            .count()
+            .toInt()
+    //return notes.count { it.isNoteArchived }
     }
     fun numberOfActiveNotes(): Int {
-        return notes.count{ !it.isNoteArchived }
+        return notes.stream()
+            .filter{!it.isNoteArchived}
+            .count()
+            .toInt()
+    //return notes.count{ !it.isNoteArchived }
     }
     fun numberOfNotesByPriority(priority: Int): Int {
-        return notes.count{it.notePriority == priority}
+        return notes.stream()
+            .filter{it.notePriority == priority}
+            .count()
+            .toInt()
+    //return notes.count{it.notePriority == priority}
     }
     fun isValidIndex(index: Int) :Boolean{
         return isValidListIndex(index, notes);
@@ -101,7 +113,6 @@ class NoteAPI(serializerType: Serializer){
     fun store() {
         serializer.write(notes)
     }
-
     fun archiveNote(indexToArchive: Int): Boolean {
         val foundNote = findNote(indexToArchive)
         return if (foundNote != null && !foundNote.isNoteArchived) {
