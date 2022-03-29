@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="controller.NoteAPITest$ListArchivedActiveNotes" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-03-27T16:10:38" hostname="NIKLASFH" time="0.02">
+  <properties/>
+  <testcase name="listActiveNotes returns no active notes stored when ArrayList is empty()" classname="controller.NoteAPITest$ListArchivedActiveNotes" time="0.002"/>
+  <testcase name="listActiveNotes returns active notes when ArrayList has active notes stored()" classname="controller.NoteAPITest$ListArchivedActiveNotes" time="0.005"/>
+  <testcase name="listArchivedNotes returns no archived notes when ArrayList is empty()" classname="controller.NoteAPITest$ListArchivedActiveNotes" time="0.005"/>
+  <testcase name="listArchivedNotes returns archived notes when ArrayList has archived notes stored()" classname="controller.NoteAPITest$ListArchivedActiveNotes" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
