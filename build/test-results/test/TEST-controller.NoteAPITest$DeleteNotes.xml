@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="controller.NoteAPITest$DeleteNotes" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-03-27T16:10:38" hostname="NIKLASFH" time="0.005">
-  <properties/>
-  <testcase name="deleting a note that exists delete and returns deleted object()" classname="controller.NoteAPITest$DeleteNotes" time="0.001"/>
-  <testcase name="deleting a Note that does not exist, returns null()" classname="controller.NoteAPITest$DeleteNotes" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
