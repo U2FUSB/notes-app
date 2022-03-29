@@ -2,6 +2,7 @@ import controller.NoteAPI
 import models.Note
 import mu.KotlinLogging
 import persistence.XMLSerializer
+import utils.IndexChecker.isValidIndex
 import utils.ScannerInput.readNextInt
 import utils.ScannerInput.readNextLine
 import java.io.File
@@ -107,7 +108,7 @@ fun updateNote() {
     if (noteAPI.numberOfNotes() > 0) {
         //only ask the user to choose the note if notes exist
         val indexToUpdate = readNextInt("Enter the index of the note to update: ")
-        if (noteAPI.isValidIndex(indexToUpdate)) {
+        if (isValidIndex(indexToUpdate, noteAPI.getNotes())) {
             val noteTitle = readNextLine("Enter a title for the note: ")
             val notePriority = readNextInt("Enter a priority (1-low, 2, 3, 4, 5-high): ")
             val noteCategory = readNextLine("Enter a category for the note: ")
