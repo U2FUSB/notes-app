@@ -2,16 +2,21 @@ package controller
 
 import models.Note
 import persistence.Serializer
+import utils.IndexChecker.isValidIndex
 import kotlin.jvm.Throws
 
+@Suppress("UNCHECKED_CAST")
 class NoteAPI(serializerType: Serializer){
     private var serializer: Serializer = serializerType
     private var notes = ArrayList<Note>()
 
+    fun getNotes(): ArrayList<Note> {
+        return notes
+    }
     fun add(note: Note): Boolean =
         notes.add(note)
     fun findNote(index: Int): Note? =
-        if (isValidListIndex(index, notes)) {
+        if (isValidIndex(index, notes)) {
             notes[index]
         } else null
     fun listAllNotes(): String =
@@ -52,7 +57,7 @@ class NoteAPI(serializerType: Serializer){
         }
     }
     fun deleteNote(indexToDelete: Int): Note? =
-        if (isValidListIndex(indexToDelete, notes)) {
+        if (isValidIndex(indexToDelete, notes)) {
             notes.removeAt(indexToDelete)
         } else null
     fun updateNote(indexToUpdate: Int, note: Note?): Boolean {
@@ -78,11 +83,11 @@ class NoteAPI(serializerType: Serializer){
         countListToInt(notes.filter{!it.isNoteArchived})
     fun numberOfNotesByPriority(priority: Int): Int =
         countListToInt(notes.filter{it.notePriority == priority})
-    fun isValidIndex(index: Int) :Boolean =
+    /*fun isValidIndex(index: Int) :Boolean =
         isValidListIndex(index, notes)
     private fun isValidListIndex(index: Int, list: List<Any>):Boolean =
         (index >= 0 && index < list.size)
-    @Throws(Exception::class)
+    */@Throws(Exception::class)
     fun load() {
         notes = serializer.read() as ArrayList<Note> /* = java.util.ArrayList<models.Note> */
     }

@@ -2,7 +2,6 @@ package utils
 
 import java.util.*
 
-
 object ScannerInput {
     @JvmStatic
     fun readNextInt(prompt: String?):Int {
