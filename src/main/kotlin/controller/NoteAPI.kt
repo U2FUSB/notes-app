@@ -10,15 +10,10 @@ class NoteAPI(serializerType: Serializer){
     private var serializer: Serializer = serializerType
     private var notes = ArrayList<Note>()
 
-    fun getNotes(): ArrayList<Note> {
-        return notes
-    }
+    // main functions
     fun add(note: Note): Boolean =
         notes.add(note)
-    fun findNote(index: Int): Note? =
-        if (isValidIndex(index, notes)) {
-            notes[index]
-        } else null
+
     fun listAllNotes(): String =
         if (notes.isEmpty()) {
             "No notes stored"
@@ -42,6 +37,12 @@ class NoteAPI(serializerType: Serializer){
         } else {
             formatListString(notes.filter { it.isNoteArchived})
         }
+    fun listDoneNotes(): String =
+        if (numberOfDoneNotes() == 0) {
+            "No done notes yet"
+        } else {
+            formatListString(notes.filter {it.isNoteDone})
+        }
     fun listNotesBySelectedPriority(priority: Int): String {
         return if (notes.isEmpty()) {
             "No notes stored"
@@ -56,10 +57,12 @@ class NoteAPI(serializerType: Serializer){
             notesByPrio.ifEmpty { */
         }
     }
+
     fun deleteNote(indexToDelete: Int): Note? =
         if (isValidIndex(indexToDelete, notes)) {
             notes.removeAt(indexToDelete)
         } else null
+
     fun updateNote(indexToUpdate: Int, note: Note?): Boolean {
         //find the note object by the index number
         val foundNote = findNote(indexToUpdate)
@@ -75,26 +78,7 @@ class NoteAPI(serializerType: Serializer){
         //if the note was not found, return false, indicating that the update was not successful
         return false
     }
-    fun numberOfNotes(): Int =
-        notes.size
-    fun numberOfArchivedNotes(): Int =
-        countListToInt(notes.filter { it.isNoteArchived })
-    fun numberOfActiveNotes(): Int =
-        countListToInt(notes.filter{!it.isNoteArchived})
-    fun numberOfNotesByPriority(priority: Int): Int =
-        countListToInt(notes.filter{it.notePriority == priority})
-    /*fun isValidIndex(index: Int) :Boolean =
-        isValidListIndex(index, notes)
-    private fun isValidListIndex(index: Int, list: List<Any>):Boolean =
-        (index >= 0 && index < list.size)
-    */@Throws(Exception::class)
-    fun load() {
-        notes = serializer.read() as ArrayList<Note> /* = java.util.ArrayList<models.Note> */
-    }
-    @Throws(Exception::class)
-    fun store() {
-        serializer.write(notes)
-    }
+
     fun archiveNote(indexToArchive: Int): Boolean {
         val foundNote = findNote(indexToArchive)
         return if (foundNote != null && !foundNote.isNoteArchived) {
@@ -104,10 +88,52 @@ class NoteAPI(serializerType: Serializer){
             false
         }
     }
+
+    fun doneNote(indexToBeDone: Int): Boolean {
+        val foundNote = findNote(indexToBeDone)
+        return if (foundNote != null && !foundNote.isNoteDone) {
+            foundNote.isNoteDone = true
+            true
+        } else {
+            false
+        }
+    }
+
     fun searchByTitle(noteTitle: String) : String =
         formatListString(notes.filter { it.noteTitle.lowercase().contains(noteTitle.lowercase()) })
+
+    // Counting functions
+    fun numberOfNotes(): Int =
+        notes.size
+    fun numberOfArchivedNotes(): Int =
+        countListToInt(notes.filter { it.isNoteArchived })
+    fun numberOfActiveNotes(): Int =
+        countListToInt(notes.filter{!it.isNoteArchived})
+    fun numberOfDoneNotes(): Int =
+        countListToInt(notes.filter{it.isNoteDone})
+    fun numberOfNotesByPriority(priority: Int): Int =
+        countListToInt(notes.filter{it.notePriority == priority})
+
+    // helper
+    fun getNotes(): ArrayList<Note> {
+        return notes
+    }
+    fun findNote(index: Int): Note? =
+        if (isValidIndex(index, notes)) {
+            notes[index]
+        } else null
+
     private fun formatListString(notesToFormat : List<Note>) : String =
         notesToFormat.joinToString{ "\n${notes.indexOf(it)} : $it" }
     private fun countListToInt(notesToCount: List<Note>) : Int =
         notesToCount.stream().count().toInt()
+
+    @Throws(Exception::class)
+    fun load() {
+        notes = serializer.read() as ArrayList<Note> /* = java.util.ArrayList<models.Note> */
+    }
+    @Throws(Exception::class)
+    fun store() {
+        serializer.write(notes)
+    }
 }

@@ -16,16 +16,25 @@ import kotlin.test.assertNull
 
 class NoteAPITest {
 
+    private var populatedNotes: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
     private var learnKotlin: Note? = null
     private var summerHoliday: Note? = null
     private var codeApp: Note? = null
     private var testApp: Note? = null
     private var swim: Note? = null
+
+    private var archivedNotes: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
     private var iAmArchived: Note? = null
     private var iAmTooArchived: Note? = null
-    private var populatedNotes: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
+
+    private var areTheyDone: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
+    private var notDone: Note? = null
+    private var done: Note? = null
+    private var doneToo: Note? = null
+    private var hiha: Note? = null
+    private var yupadupa: Note? = null
+
     private var emptyNotes: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
-    private var archivedNotes: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
 
     @BeforeEach
     fun setup() {
@@ -34,8 +43,15 @@ class NoteAPITest {
         codeApp = Note("Code App", 4, "Work", true)
         testApp = Note("Test App", 4, "Work", false)
         swim = Note("Swim - Pool", 3, "Hobby", true)
+
         iAmArchived = Note("archvedNote", 2, "some", true)
         iAmTooArchived = Note("alsoArchived", 1, "some", true)
+
+        notDone = Note("notDone", 1, "nope", isNoteArchived = false, isNoteDone = false)
+        done = Note("done", 1, "yep", isNoteArchived = false, isNoteDone = true)
+        doneToo = Note("doneTooOhYes", 1, "yep", isNoteArchived = true, isNoteDone = true)
+        hiha = Note("notDone", 1, "nope", isNoteArchived = true, isNoteDone = false)
+        yupadupa = Note("yupidu", 1, "yep", isNoteArchived = false, isNoteDone = true)
 
         //adding 5 Note to the notes api
         populatedNotes!!.add(learnKotlin!!)
@@ -47,6 +63,13 @@ class NoteAPITest {
         //adding 2 Note to the notes api (for archived)
         archivedNotes!!.add(iAmArchived!!)
         archivedNotes!!.add(iAmTooArchived!!)
+
+        //adding 5 Note to the notes api (for done)
+        areTheyDone!!.add(notDone!!)
+        areTheyDone!!.add(done!!)
+        areTheyDone!!.add(doneToo!!)
+        areTheyDone!!.add(hiha!!)
+        areTheyDone!!.add(yupadupa!!)
     }
 
     @AfterEach
@@ -62,6 +85,12 @@ class NoteAPITest {
         populatedNotes = null
         emptyNotes = null
         archivedNotes = null
+
+        notDone = null
+        done = null
+        doneToo = null
+        hiha = null
+        yupadupa = null
     }
 
     @Nested
@@ -424,6 +453,29 @@ class NoteAPITest {
             assertTrue(searchResults.contains("Code App"))
             assertTrue(searchResults.contains("Test App"))
             assertFalse(searchResults.contains("Swim - Pool"))
+        }
+    }
+
+    @Nested
+    inner class MarkAsDoneMethods {
+        @Test
+        fun `marking a note as done that does not exist returns false`() {
+            assertFalse(areTheyDone!!.doneNote(5))
+            assertFalse(areTheyDone!!.doneNote(-1))
+            assertFalse(emptyNotes!!.doneNote(0))
+        }
+
+        @Test
+        fun `marking an already done note as done returns false`(){
+            assertTrue(areTheyDone!!.findNote(1)!!.isNoteDone)
+            assertFalse(areTheyDone!!.doneNote(1))
+        }
+
+        @Test
+        fun `marking an active note that exists as done returns true and marks it as done`() {
+            assertFalse(areTheyDone!!.findNote(0)!!.isNoteDone)
+            assertTrue(areTheyDone!!.doneNote(0))
+            assertTrue(areTheyDone!!.findNote(0)!!.isNoteDone)
         }
     }
 }
