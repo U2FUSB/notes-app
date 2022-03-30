@@ -1,6 +1,7 @@
 import controller.NoteAPI
 import models.Note
 import mu.KotlinLogging
+import persistence.CBORSerializer
 import persistence.XMLSerializer
 import utils.IndexChecker.isValidIndex
 import utils.ScannerInput.readNextInt
@@ -10,6 +11,7 @@ import java.io.File
 private val logger = KotlinLogging.logger{}
 //private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
 private val noteAPI = NoteAPI(XMLSerializer(File("notes.json")))
+//private val noteAPI = NoteAPI(CBORSerializer("notes.cbor"))
 //test of writing something
 fun showMenu() : Int {
     return readNextInt ("""
@@ -213,5 +215,6 @@ fun addSomeNotes() {
 }
 
 fun main() {
+    //CBORSerializer("notes.cbor").read()//write(Note("Archived22", 2, "cat", true))
     runMenu()
 }
