@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="controller.NoteAPITest$MarkAsDoneMethods" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-03-29T13:51:57" hostname="NIKLASFH" time="0.079">
-  <properties/>
-  <testcase name="marking an active note that exists as done returns true and marks it as done()" classname="controller.NoteAPITest$MarkAsDoneMethods" time="0.063"/>
-  <testcase name="marking a note as done that does not exist returns false()" classname="controller.NoteAPITest$MarkAsDoneMethods" time="0.005"/>
-  <testcase name="marking an already done note as done returns false()" classname="controller.NoteAPITest$MarkAsDoneMethods" time="0.005"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
