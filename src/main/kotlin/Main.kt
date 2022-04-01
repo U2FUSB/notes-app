@@ -12,6 +12,7 @@ private val logger = KotlinLogging.logger{}
 //private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
 private val noteAPI = NoteAPI(XMLSerializer(File("notes.json")))
 //private val noteAPI = NoteAPI(CBORSerializer("notes.cbor"))
+//testline
 fun showMenu() : Int {
     return readNextInt ("""
         > ---------------------------
