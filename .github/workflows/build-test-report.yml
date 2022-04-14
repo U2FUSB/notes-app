@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run the Gradle build task, yea
-        run: ./gradle build
+        run: ./gradlew build
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
